@@ -449,7 +449,9 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
     animations.forEach((item, index) => {
       item.addListener((val) => {
         const temp = data[index]?.value ?? 0;
-        data[index].value = val.value;
+        if (data?.[index]) {
+          data[index].value = val.value;
+        }
         let pp = "",
           ppp = "";
         if (!(dataSet?.[0].curved ?? props.curved)) {
@@ -471,7 +473,9 @@ export const useLineChart = (props: extendedLineChartPropsType) => {
           setPointsOnChange();
         }
         counter++;
-        data[index].value = temp;
+        if (data?.[index]) {
+          data[index].value = temp;
+        }
       });
     });
   }
